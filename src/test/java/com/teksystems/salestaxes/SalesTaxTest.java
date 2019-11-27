@@ -66,7 +66,7 @@ public class SalesTaxTest {
 
         item = new Item();
         item.setId(1L);
-        item.setName("Test item");
+        item.setName("test item");
         item.setDescription("Item for test");
         item.setIsTaxable(true);
         item.setIsImported(true);

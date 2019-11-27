@@ -153,11 +153,11 @@ class SalesTax {
         return taxRate;
     }
 
-    public String formatNumber(float number) {
+    String formatNumber(float number) {
         return DECIMAL_FORMAT.format(number);
     }
 
-    public float round(float value, int places) {
+    float round(float value, int places) {
         if (places < 0) {
             throw new IllegalArgumentException();
         }
@@ -167,7 +167,7 @@ class SalesTax {
         return bd.floatValue();
     }
 
-    public float roundUpto5(float num) {
+    float roundUpto5(float num) {
         num *= 100;
         num = (int) num;
         num = (float) Math.ceil(num / 5.00f) * 5.00f;

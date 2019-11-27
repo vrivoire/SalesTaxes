@@ -1,5 +1,7 @@
 package com.teksystems.salestaxes.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tax")
-public class Tax {
+public class Tax implements Serializable {
 
     private static final long serialVersionUID = 7144791867622755443L;
 
