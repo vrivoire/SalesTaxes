@@ -76,7 +76,8 @@ class SalesTax {
     }
 
     private String runScript(Properties properties, Tax tax, Tax dutyTax, Map<String, Item> items) throws NumberFormatException {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder in = new StringBuilder();
+        StringBuilder out = new StringBuilder();
         for (int count = 1; count < properties.size() + 1; count++) {
             String property = properties.getProperty("basket" + count);
             StringTokenizer stringTokenizer = new StringTokenizer(property, ",");
@@ -86,31 +87,25 @@ class SalesTax {
                 String itemName = stringTokenizer.nextToken();
                 sale.addLine(quantity, items.get(itemName));
             }
-            sb.append(getInputText(sale, count));
-            sb.append(getOutputText(sale, count));
+            in.append(getInputText(sale, count));
+            out.append(getOutputText(sale, count));
         }
-        return sb.toString();
+        in.append("-----------------------------------------------------------");
+        return in.toString() + out.toString();
     }
 
     private String getInputText(Sale sale, int count) {
         StringBuilder sb = new StringBuilder().append('\n');
-        sb.append("-----------------------------------------------------------\n");
-        sb.append("INPUT\n");
-        sb.append("-----------------------------------------------------------\n");
         sb.append("Input ").append(count).append(":").append('\n');
         for (SaleLine saleLine : sale) {
             Item item = saleLine.getItem();
             sb.append(saleLine.getQuantity()).append(" ").append(item.getDescription()).append(" at ").append(formatNumber(item.getPrice())).append('\n');
         }
-        sb.append("-----------------------------------------------------------");
         return sb.toString();
     }
 
     private String getOutputText(Sale sale, int count) {
         StringBuilder sb = new StringBuilder().append('\n');
-        sb.append("-----------------------------------------------------------\n");
-        sb.append("OUTPUT\n");
-        sb.append("-----------------------------------------------------------\n");
         sb.append("Output ").append(count).append(":\n");
         float salesTaxes = 0;
         float total = 0;
@@ -135,7 +130,6 @@ class SalesTax {
         }
         sb.append("Sales Taxes: ").append(formatNumber(salesTaxes)).append(' ');
         sb.append("Total: ").append(formatNumber(round(total, 2))).append('\n');
-        sb.append("-----------------------------------------------------------\n");
         return sb.toString();
     }
 
