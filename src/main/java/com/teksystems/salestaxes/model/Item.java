@@ -23,7 +23,7 @@ public class Item {
     private Long id;
 
     @Basic(optional = false)
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     private String name;
 
     @Basic(optional = false)

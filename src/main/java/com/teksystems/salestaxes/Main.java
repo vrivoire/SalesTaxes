@@ -34,9 +34,7 @@ public class Main {
         LOG.info("Java version: " + System.getProperty("java.runtime.version"));
         try {
             ConfigurableApplicationContext context = new SpringApplicationBuilder(Main.class).web(WebApplicationType.NONE).run(args);
-
-//            ConfigurableApplicationContext context = SpringApplication.run(Main.class, args);
-            init(context);
+            insertBaseData(context);
             LOG.info("---------------------------------------------");
             SalesTax salesTax = new SalesTax(context);
             salesTax.start();
@@ -51,7 +49,7 @@ public class Main {
      * @param context
      * @throws Exception
      */
-    public static void init(ConfigurableApplicationContext context) throws Exception {
+    public static void insertBaseData(ConfigurableApplicationContext context) throws Exception {
 
         try {
             taxRepository = context.getBean(TaxRepository.class);
@@ -61,31 +59,31 @@ public class Main {
             taxRepository.saveAndFlush(tax);
 
             itemRepository = context.getBean(ItemRepository.class);
-            Item item = new Item("book", "book", false, false, 12.49f);
+            Item item = new Item("book", "Book", false, false, 12.49f);
             itemRepository.saveAndFlush(item);
 
-            item = new Item("music CD", "music CD", false, true, 14.99f);
+            item = new Item("music CD", "Music CD", false, true, 14.99f);
             itemRepository.saveAndFlush(item);
 
-            item = new Item("chocolate bar", "chocolate bar", false, false, 0.85f);
+            item = new Item("chocolate bar", "Chocolate bar", false, false, 0.85f);
             itemRepository.saveAndFlush(item);
 
-            item = new Item("imported box of chocolates", "imported box of chocolates", true, false, 10.00f);
+            item = new Item("imported box of chocolates", "Imported box of chocolates", true, false, 10.00f);
             itemRepository.saveAndFlush(item);
 
-            item = new Item("imported bottle of perfume1", "imported bottle of perfume", true, true, 47.50f);
+            item = new Item("imported bottle of perfume1", "Imported bottle of perfume", true, true, 47.50f);
             itemRepository.saveAndFlush(item);
 
-            item = new Item("imported bottle of perfume2", "imported bottle of perfume", true, true, 27.99f);
+            item = new Item("imported bottle of perfume2", "Imported bottle of perfume", true, true, 27.99f);
             itemRepository.saveAndFlush(item);
 
-            item = new Item("bottle of perfume", "bottle of perfume", false, true, 18.99f);
+            item = new Item("bottle of perfume", "Bottle of perfume", false, true, 18.99f);
             itemRepository.saveAndFlush(item);
 
-            item = new Item("packet of headache pills", "packet of headache pills", false, false, 9.75f);
+            item = new Item("packet of headache pills", "Packet of headache pills", false, false, 9.75f);
             itemRepository.saveAndFlush(item);
 
-            item = new Item("box of imported chocolates", "box of imported chocolates", true, false, 11.25f);
+            item = new Item("box of imported chocolates", "Box of imported chocolates", true, false, 11.25f);
             itemRepository.saveAndFlush(item);
 
         } catch (BeansException ex) {

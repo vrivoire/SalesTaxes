@@ -23,7 +23,7 @@ public class Tax {
     private Long id;
 
     @Basic(optional = false)
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     private String name;
 
     @Basic(optional = false)
@@ -105,7 +105,7 @@ public class Tax {
      *
      * @return
      */
-    public Boolean getIsImported() {
+    public Boolean isImported() {
         return isImported;
     }
 

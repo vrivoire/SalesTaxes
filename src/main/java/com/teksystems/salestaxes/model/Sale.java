@@ -10,9 +10,9 @@ import java.util.List;
  */
 public class Sale implements Iterable<SaleLine> {
 
-    private final Tax basicSalesTax;
-    private final Tax dutyTax;
-    private final List<SaleLine> lines = new ArrayList<>();
+    private final Tax BASIC_SALES_TAX;
+    private final Tax DUTY_TAX;
+    private final List<SaleLine> LINES = new ArrayList<>();
 
     /**
      *
@@ -20,8 +20,8 @@ public class Sale implements Iterable<SaleLine> {
      * @param dutyTax
      */
     public Sale(Tax basicSalesTax, Tax dutyTax) {
-        this.basicSalesTax = basicSalesTax;
-        this.dutyTax = dutyTax;
+        this.BASIC_SALES_TAX = basicSalesTax;
+        this.DUTY_TAX = dutyTax;
     }
 
     /**
@@ -31,12 +31,12 @@ public class Sale implements Iterable<SaleLine> {
      */
     public void addLine(int quantity, Item item) {
         SaleLine saleLine = new SaleLine(quantity, item);
-        lines.add(saleLine);
+        LINES.add(saleLine);
     }
 
     @Override
     public Iterator<SaleLine> iterator() {
-        return lines.iterator();
+        return LINES.iterator();
     }
 
     /**
@@ -44,7 +44,7 @@ public class Sale implements Iterable<SaleLine> {
      * @return
      */
     public Tax getBasicSalesTax() {
-        return basicSalesTax;
+        return BASIC_SALES_TAX;
     }
 
     /**
@@ -52,14 +52,14 @@ public class Sale implements Iterable<SaleLine> {
      * @return
      */
     public Tax getDutyTax() {
-        return dutyTax;
+        return DUTY_TAX;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Sale [");
-        lines.stream().forEach((line) -> {
+        LINES.stream().forEach((line) -> {
             builder.append(line);
         });
         builder.append("]");

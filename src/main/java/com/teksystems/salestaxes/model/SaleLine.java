@@ -23,7 +23,7 @@ public class SaleLine {
      *
      * @return
      */
-    public int getQUANTITY() {
+    public int getQuantity() {
         return QUANTITY;
     }
 
@@ -31,7 +31,7 @@ public class SaleLine {
      *
      * @return
      */
-    public Item getITEM() {
+    public Item getItem() {
         return ITEM;
     }
 

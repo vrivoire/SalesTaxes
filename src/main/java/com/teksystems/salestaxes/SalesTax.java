@@ -12,7 +12,6 @@ import java.util.StringTokenizer;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
@@ -32,20 +31,16 @@ class SalesTax {
 
     private static final Log LOGGER = LogFactory.getLog(SalesTax.class);
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("####0.00");
-    private ConfigurableApplicationContext context;
-    @Autowired
     private TaxService taxService;
-    @Autowired
     private ItemService itemService;
 
-    public SalesTax(ConfigurableApplicationContext context) {
-        this.context = context;
-        taxService = context.getBean(TaxService.class);
-        itemService = context.getBean(ItemService.class);
+    // For unit tests
+    SalesTax() {
     }
 
-    SalesTax() {
-
+    public SalesTax(ConfigurableApplicationContext context) {
+        taxService = context.getBean(TaxService.class);
+        itemService = context.getBean(ItemService.class);
     }
 
     public void start() {
@@ -54,7 +49,7 @@ class SalesTax {
             Tax dutyTax = null;
             List<Tax> taxes = taxService.loadAll();
             for (Tax taxe : taxes) {
-                if (taxe.getIsImported()) {
+                if (taxe.isImported()) {
                     dutyTax = taxe;
                 } else {
                     tax = taxe;
@@ -104,8 +99,8 @@ class SalesTax {
         sb.append("-----------------------------------------------------------\n");
         sb.append("Input ").append(count).append(":").append('\n');
         for (SaleLine saleLine : sale) {
-            Item item = saleLine.getITEM();
-            sb.append(saleLine.getQUANTITY()).append(" ").append(item.getDescription()).append(" at ").append(formatNumber(item.getPrice())).append('\n');
+            Item item = saleLine.getItem();
+            sb.append(saleLine.getQuantity()).append(" ").append(item.getDescription()).append(" at ").append(formatNumber(item.getPrice())).append('\n');
         }
         sb.append("-----------------------------------------------------------");
         return sb.toString();
@@ -121,8 +116,8 @@ class SalesTax {
         float total = 0;
         for (SaleLine saleLine : sale) {
 
-            int quantity = saleLine.getQUANTITY();
-            Item item = saleLine.getITEM();
+            int quantity = saleLine.getQuantity();
+            Item item = saleLine.getItem();
 
             float finalItemPrice = item.getPrice() * quantity;
             float taxRate = getTaxRate(sale, item);
@@ -136,9 +131,9 @@ class SalesTax {
             }
 
             total += finalItemPrice;
-            sb.append(quantity).append(" ").append(item.getName()).append(": ").append(formatNumber(round(finalItemPrice, 2))).append('\n');
+            sb.append(quantity).append(" ").append(item.getDescription()).append(": ").append(formatNumber(round(finalItemPrice, 2))).append('\n');
         }
-        sb.append("Sales taxes: ").append(formatNumber(salesTaxes)).append('\n');
+        sb.append("Sales Taxes: ").append(formatNumber(salesTaxes)).append(' ');
         sb.append("Total: ").append(formatNumber(round(total, 2))).append('\n');
         sb.append("-----------------------------------------------------------\n");
         return sb.toString();
