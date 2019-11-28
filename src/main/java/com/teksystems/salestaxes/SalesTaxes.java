@@ -27,18 +27,18 @@ import com.teksystems.salestaxes.service.TaxService;
  * @author VincentRivoire
  */
 @EnableJpaRepositories
-class SalesTax {
+class SalesTaxes {
 
-    private static final Log LOGGER = LogFactory.getLog(SalesTax.class);
+    private static final Log LOGGER = LogFactory.getLog(SalesTaxes.class);
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("####0.00");
     private TaxService taxService;
     private ItemService itemService;
 
     // For unit tests
-    SalesTax() {
+    SalesTaxes() {
     }
 
-    public SalesTax(ConfigurableApplicationContext context) {
+    public SalesTaxes(ConfigurableApplicationContext context) {
         taxService = context.getBean(TaxService.class);
         itemService = context.getBean(ItemService.class);
     }
@@ -71,7 +71,7 @@ class SalesTax {
 
     private Properties loadScript() throws IOException {
         Properties properties = new Properties();
-        properties.load(SalesTax.class.getResourceAsStream("/salesTaxes.properties"));
+        properties.load(SalesTaxes.class.getResourceAsStream("/salesTaxes.properties"));
         return properties;
     }
 

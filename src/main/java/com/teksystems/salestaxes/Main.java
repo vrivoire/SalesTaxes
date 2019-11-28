@@ -36,7 +36,7 @@ public class Main {
             ConfigurableApplicationContext context = new SpringApplicationBuilder(Main.class).web(WebApplicationType.NONE).run(args);
             insertBaseData(context);
             LOG.info("---------------------------------------------");
-            SalesTax salesTax = new SalesTax(context);
+            SalesTaxes salesTax = new SalesTaxes(context);
             salesTax.start();
         } catch (Exception ex) {
             LOG.fatal(ex.getMessage(), ex);

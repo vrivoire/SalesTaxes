@@ -27,7 +27,7 @@ public class SalesTaxTest {
     private Sale sale;
 
     /**
-     * Tests the SalesTax class
+     * Tests the SalesTaxes class
      */
     public SalesTaxTest() {
     }
@@ -83,13 +83,13 @@ public class SalesTaxTest {
     }
 
     /**
-     * Test of getTaxRate method, of class SalesTax.
+     * Test of getTaxRate method, of class SalesTaxes.
      */
     @Test
     public void testGetTaxRate() {
         System.out.println("getTaxRate");
 
-        SalesTax instance = new SalesTax();
+        SalesTaxes instance = new SalesTaxes();
 
         item.setIsImported(true);
         item.setIsTaxable(true);
@@ -117,40 +117,40 @@ public class SalesTaxTest {
     }
 
     /**
-     * Test of formatNumber method, of class SalesTax.
+     * Test of formatNumber method, of class SalesTaxes.
      */
     @Test
     public void testFormatNumber() {
         System.out.println("formatNumber");
 
         float number = 1.23456f;
-        SalesTax instance = new SalesTax();
+        SalesTaxes instance = new SalesTaxes();
         String expResult = "1.23";
         String result = instance.formatNumber(number);
         Assert.assertEquals(expResult, result);
     }
 
     /**
-     * Test of round method, of class SalesTax.
+     * Test of round method, of class SalesTaxes.
      */
     @Test
     public void testRound() {
         System.out.println("round");
         float value = 1.125f;
         int places = 2;
-        SalesTax instance = new SalesTax();
+        SalesTaxes instance = new SalesTaxes();
         float expResult = 1.13f;
         float result = instance.round(value, places);
         Assert.assertEquals(expResult, result, 0.00);
     }
 
     /**
-     * Test of roundUpto5 method, of class SalesTax.
+     * Test of roundUpto5 method, of class SalesTaxes.
      */
     @Test
     public void roundUpto5() {
         System.out.println("roundUpto5");
-        SalesTax instance = new SalesTax();
+        SalesTaxes instance = new SalesTaxes();
 
         float value = 1.11f;
         float expResult = 1.15f;
