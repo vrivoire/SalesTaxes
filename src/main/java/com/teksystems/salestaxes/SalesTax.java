@@ -117,7 +117,7 @@ class SalesTax {
             float finalItemPrice = item.getPrice() * quantity;
             float taxRate = getTaxRate(sale, item);
 
-            float salesTax = finalItemPrice * (taxRate / 100);
+            float salesTax = finalItemPrice * (taxRate / 100.00f);
             salesTaxes += salesTax;
             salesTaxes = roundUpto5(salesTaxes);
             finalItemPrice = finalItemPrice + salesTax;
