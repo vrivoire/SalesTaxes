@@ -1,8 +1,8 @@
-package com.teksystems.salestaxes.repositories;
+package com.vrivoire.salestaxes.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.teksystems.salestaxes.model.Item;
+import com.vrivoire.salestaxes.model.Item;
 
 /**
  *

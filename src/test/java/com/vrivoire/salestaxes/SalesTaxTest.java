@@ -1,11 +1,14 @@
-package com.teksystems.salestaxes;
+package com.vrivoire.salestaxes;
+
+import com.vrivoire.salestaxes.SalesTaxes;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.teksystems.salestaxes.model.Item;
-import com.teksystems.salestaxes.model.Sale;
-import com.teksystems.salestaxes.model.Tax;
+import com.vrivoire.salestaxes.model.Item;
+import com.vrivoire.salestaxes.model.Sale;
+import com.vrivoire.salestaxes.model.Tax;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;

@@ -1,4 +1,4 @@
-package com.teksystems.salestaxes.model;
+package com.vrivoire.salestaxes.model;
 
 import java.io.Serializable;
 
@@ -14,8 +14,8 @@ import javax.persistence.Table;
  * @author Vincent
  */
 @Entity
-@Table(name = "tax")
-public class Tax implements Serializable {
+@Table(name = "item")
+public class Item implements Serializable {
 
     private static final long serialVersionUID = 7144791867622755443L;
 
@@ -29,30 +29,41 @@ public class Tax implements Serializable {
     private String name;
 
     @Basic(optional = false)
-    @Column(nullable = false)
-    private float rate;
+    @Column(nullable = false, length = 50)
+    private String description;
 
     @Basic(optional = false)
     @Column(name = "IS_IMPORTED", nullable = false)
     private Boolean isImported;
 
+    @Basic(optional = false)
+    @Column(name = "IS_TAXABLE", nullable = false)
+    private Boolean isTaxable;
+
+    @Basic(optional = false)
+    @Column(nullable = false)
+    private float price;
+
     /**
-     * Holds tax information
+     * Holds item information
      */
-    public Tax() {
+    public Item() {
     }
 
     /**
      *
-     * @param id
      * @param name
-     * @param rate
+     * @param description
      * @param isImported
+     * @param isTaxable
+     * @param price
      */
-    public Tax(String name, float rate, Boolean isImported) {
+    public Item(String name, String description, Boolean isImported, Boolean isTaxable, float price) {
         this.name = name;
-        this.rate = rate;
+        this.description = description;
         this.isImported = isImported;
+        this.isTaxable = isTaxable;
+        this.price = price;
     }
 
     /**
@@ -91,16 +102,16 @@ public class Tax implements Serializable {
      *
      * @return
      */
-    public float getRate() {
-        return rate;
+    public String getDescription() {
+        return description;
     }
 
     /**
      *
-     * @param rate
+     * @param description
      */
-    public void setRate(float rate) {
-        this.rate = rate;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
@@ -119,6 +130,38 @@ public class Tax implements Serializable {
         this.isImported = isImported;
     }
 
+    /**
+     *
+     * @return
+     */
+    public Boolean isTaxable() {
+        return isTaxable;
+    }
+
+    /**
+     *
+     * @param isTaxable
+     */
+    public void setIsTaxable(Boolean isTaxable) {
+        this.isTaxable = isTaxable;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getPrice() {
+        return price;
+    }
+
+    /**
+     *
+     * @param price
+     */
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -129,10 +172,10 @@ public class Tax implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Tax)) {
+        if (!(object instanceof Item)) {
             return false;
         }
-        Tax other = (Tax) object;
+        Item other = (Item) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -142,11 +185,13 @@ public class Tax implements Serializable {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Tax [");
+        builder.append("Item [");
         builder.append("id=").append(id);
-        builder.append(", isImported=").append(isImported);
         builder.append(", name=").append(name);
-        builder.append(", rate=").append(rate);
+        builder.append(", description=").append(description);
+        builder.append(", isImported=").append(isImported);
+        builder.append(", isTaxable=").append(isTaxable);
+        builder.append(", price=").append(price);
         builder.append("]");
         return builder.toString();
     }

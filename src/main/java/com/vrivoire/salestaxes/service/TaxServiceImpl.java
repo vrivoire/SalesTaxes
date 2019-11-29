@@ -1,12 +1,13 @@
-package com.teksystems.salestaxes.service;
+package com.vrivoire.salestaxes.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teksystems.salestaxes.model.Tax;
-import com.teksystems.salestaxes.repositories.TaxRepository;
+import com.vrivoire.salestaxes.model.Tax;
+
+import com.vrivoire.salestaxes.repositories.TaxRepository;
 
 /**
  *

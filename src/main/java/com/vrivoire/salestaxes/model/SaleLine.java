@@ -1,4 +1,4 @@
-package com.teksystems.salestaxes.model;
+package com.vrivoire.salestaxes.model;
 
 /**
  *

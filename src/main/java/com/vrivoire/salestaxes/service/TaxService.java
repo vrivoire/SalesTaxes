@@ -1,8 +1,8 @@
-package com.teksystems.salestaxes.service;
+package com.vrivoire.salestaxes.service;
 
 import java.util.List;
 
-import com.teksystems.salestaxes.model.Tax;
+import com.vrivoire.salestaxes.model.Tax;
 
 /**
  *

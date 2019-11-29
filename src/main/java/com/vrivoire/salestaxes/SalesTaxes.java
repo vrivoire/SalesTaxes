@@ -1,4 +1,4 @@
-package com.teksystems.salestaxes;
+package com.vrivoire.salestaxes;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -15,12 +15,13 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.teksystems.salestaxes.model.Item;
-import com.teksystems.salestaxes.model.Sale;
-import com.teksystems.salestaxes.model.SaleLine;
-import com.teksystems.salestaxes.model.Tax;
-import com.teksystems.salestaxes.service.ItemService;
-import com.teksystems.salestaxes.service.TaxService;
+import com.vrivoire.salestaxes.model.Item;
+import com.vrivoire.salestaxes.model.Sale;
+import com.vrivoire.salestaxes.model.SaleLine;
+import com.vrivoire.salestaxes.model.Tax;
+
+import com.vrivoire.salestaxes.service.ItemService;
+import com.vrivoire.salestaxes.service.TaxService;
 
 /**
  *

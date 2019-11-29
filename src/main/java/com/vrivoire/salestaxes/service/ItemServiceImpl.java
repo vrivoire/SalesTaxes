@@ -1,4 +1,4 @@
-package com.teksystems.salestaxes.service;
+package com.vrivoire.salestaxes.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,8 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teksystems.salestaxes.model.Item;
-import com.teksystems.salestaxes.repositories.ItemRepository;
+import com.vrivoire.salestaxes.model.Item;
+
+import com.vrivoire.salestaxes.repositories.ItemRepository;
 
 /**
  *

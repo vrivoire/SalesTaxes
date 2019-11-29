@@ -1,4 +1,4 @@
-package com.teksystems.salestaxes;
+package com.vrivoire.salestaxes;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -10,10 +10,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.teksystems.salestaxes.model.Item;
-import com.teksystems.salestaxes.model.Tax;
-import com.teksystems.salestaxes.repositories.ItemRepository;
-import com.teksystems.salestaxes.repositories.TaxRepository;
+import com.vrivoire.salestaxes.model.Item;
+import com.vrivoire.salestaxes.model.Tax;
+
+import com.vrivoire.salestaxes.repositories.ItemRepository;
+import com.vrivoire.salestaxes.repositories.TaxRepository;
 
 /**
  *
