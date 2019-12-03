@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.vrivoire.salestaxes.model.Tax;
 
-import com.vrivoire.salestaxes.repositories.TaxRepository;
+import com.vrivoire.salestaxes.repository.TaxRepository;
 
 /**
  *

@@ -1,4 +1,11 @@
-package com.vrivoire.salestaxes;
+package com.vrivoire.salestaxes.controller;
+
+import com.vrivoire.salestaxes.model.Item;
+import com.vrivoire.salestaxes.model.Sale;
+import com.vrivoire.salestaxes.model.SaleLine;
+import com.vrivoire.salestaxes.model.Tax;
+import com.vrivoire.salestaxes.service.ItemService;
+import com.vrivoire.salestaxes.service.TaxService;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -15,27 +22,20 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.vrivoire.salestaxes.model.Item;
-import com.vrivoire.salestaxes.model.Sale;
-import com.vrivoire.salestaxes.model.SaleLine;
-import com.vrivoire.salestaxes.model.Tax;
-
-import com.vrivoire.salestaxes.service.ItemService;
-import com.vrivoire.salestaxes.service.TaxService;
-
 /**
  *
  * @author VincentRivoire
  */
 @EnableJpaRepositories
-class SalesTaxes {
+public class SalesTaxes {
 
-    private static final Log LOGGER = LogFactory.getLog(SalesTaxes.class);
+    private static final Log LOG = LogFactory.getLog(SalesTaxes.class);
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("####0.00");
+    private static final String SCRIPT = "/salesTaxes.properties";
     private TaxService taxService;
     private ItemService itemService;
 
-    // For unit tests
+    // Package for unit tests
     SalesTaxes() {
     }
 
@@ -63,22 +63,26 @@ class SalesTaxes {
 
             String output = runScript(properties, tax, dutyTax, items);
 
-            LOGGER.info(output);
+            LOG.info(output);
 
         } catch (IOException ex) {
-            LOGGER.error(ex, ex);
+            LOG.error(ex, ex);
         }
     }
 
     private Properties loadScript() throws IOException {
+        LOG.info("Loading script at " + SCRIPT);
         Properties properties = new Properties();
-        properties.load(SalesTaxes.class.getResourceAsStream("/salesTaxes.properties"));
+        properties.load(SalesTaxes.class.getResourceAsStream(SCRIPT));
         return properties;
     }
 
-    private String runScript(Properties properties, Tax tax, Tax dutyTax, Map<String, Item> items) throws NumberFormatException {
+    private String runScript(Properties properties, Tax tax, Tax dutyTax, Map<String, Item> items) {
+        LOG.info("Running script");
+
         StringBuilder in = new StringBuilder();
         StringBuilder out = new StringBuilder();
+
         for (int count = 1; count < properties.size() + 1; count++) {
             String property = properties.getProperty("basket" + count);
             StringTokenizer stringTokenizer = new StringTokenizer(property, ",");
@@ -100,7 +104,12 @@ class SalesTaxes {
         sb.append("Input ").append(count).append(":").append('\n');
         for (SaleLine saleLine : sale) {
             Item item = saleLine.getItem();
-            sb.append(saleLine.getQuantity()).append(" ").append(item.getDescription()).append(" at ").append(formatNumber(item.getPrice())).append('\n');
+            sb.append(saleLine.getQuantity())
+                    .append(" ")
+                    .append(item.getDescription())
+                    .append(" at ")
+                    .append(formatNumber(item.getPrice()))
+                    .append('\n');
         }
         return sb.toString();
     }
@@ -148,10 +157,12 @@ class SalesTaxes {
         return taxRate;
     }
 
+    // Package for unit tests
     String formatNumber(float number) {
         return DECIMAL_FORMAT.format(number);
     }
 
+    // Package for unit tests
     float round(float value, int places) {
         if (places < 0) {
             throw new IllegalArgumentException();
@@ -162,6 +173,7 @@ class SalesTaxes {
         return bd.floatValue();
     }
 
+    // Package for unit tests
     float roundUpto5(float num) {
         num *= 100;
         num = (int) num;

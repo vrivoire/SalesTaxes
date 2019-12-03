@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.vrivoire.salestaxes.model.Item;
 
-import com.vrivoire.salestaxes.repositories.ItemRepository;
+import com.vrivoire.salestaxes.repository.ItemRepository;
 
 /**
  *

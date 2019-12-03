@@ -1,13 +1,11 @@
-package com.vrivoire.salestaxes;
-
-import com.vrivoire.salestaxes.SalesTaxes;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+package com.vrivoire.salestaxes.controller;
 
 import com.vrivoire.salestaxes.model.Item;
 import com.vrivoire.salestaxes.model.Sale;
 import com.vrivoire.salestaxes.model.Tax;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -22,7 +20,7 @@ import org.junit.Test;
  */
 public class SalesTaxTest {
 
-    private static final Log LOGGER = LogFactory.getLog(SalesTaxTest.class);
+    private static final Log LOG = LogFactory.getLog(SalesTaxTest.class);
 
     private Item item;
     private Tax basicSalesTax;

@@ -1,9 +1,10 @@
 package com.vrivoire.salestaxes;
 
+import com.vrivoire.salestaxes.controller.SalesTaxes;
 import com.vrivoire.salestaxes.model.Item;
 import com.vrivoire.salestaxes.model.Tax;
-import com.vrivoire.salestaxes.repositories.ItemRepository;
-import com.vrivoire.salestaxes.repositories.TaxRepository;
+import com.vrivoire.salestaxes.repository.ItemRepository;
+import com.vrivoire.salestaxes.repository.TaxRepository;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -33,8 +34,8 @@ public class Main {
             ConfigurableApplicationContext context = new SpringApplicationBuilder(Main.class).web(WebApplicationType.NONE).run(args);
             insertBaseData(context);
 
-            SalesTaxes salesTax = new SalesTaxes(context);
-            salesTax.start();
+            SalesTaxes salesTaxes = new SalesTaxes(context);
+            salesTaxes.start();
         } catch (Exception ex) {
             LOG.fatal(ex.getMessage(), ex);
             System.exit(-1);
@@ -63,35 +64,35 @@ public class Main {
         itemRepository.saveAndFlush(item);
         LOG.info(item);
 
-        item = new Item("music CD", "Music CD", false, true, 14.99f);
+        item = new Item("musicCD", "Music CD", false, true, 14.99f);
         itemRepository.saveAndFlush(item);
         LOG.info(item);
 
-        item = new Item("chocolate bar", "Chocolate bar", false, false, 0.85f);
+        item = new Item("chocolatebar", "Chocolate bar", false, false, 0.85f);
         itemRepository.saveAndFlush(item);
         LOG.info(item);
 
-        item = new Item("imported box of chocolates", "Imported box of chocolates", true, false, 10.00f);
+        item = new Item("importedboxofchocolates", "Imported box of chocolates", true, false, 10.00f);
         itemRepository.saveAndFlush(item);
         LOG.info(item);
 
-        item = new Item("imported bottle of perfume1", "Imported bottle of perfume", true, true, 47.50f);
+        item = new Item("importedbottleofperfume1", "Imported bottle of perfume", true, true, 47.50f);
         itemRepository.saveAndFlush(item);
         LOG.info(item);
 
-        item = new Item("imported bottle of perfume2", "Imported bottle of perfume", true, true, 27.99f);
+        item = new Item("importedbottleofperfume2", "Imported bottle of perfume", true, true, 27.99f);
         itemRepository.saveAndFlush(item);
         LOG.info(item);
 
-        item = new Item("bottle of perfume", "Bottle of perfume", false, true, 18.99f);
+        item = new Item("bottleofperfume", "Bottle of perfume", false, true, 18.99f);
         itemRepository.saveAndFlush(item);
         LOG.info(item);
 
-        item = new Item("packet of headache pills", "Packet of headache pills", false, false, 9.75f);
+        item = new Item("packetofheadachepills", "Packet of headache pills", false, false, 9.75f);
         itemRepository.saveAndFlush(item);
         LOG.info(item);
 
-        item = new Item("box of imported chocolates", "Box of imported chocolates", true, false, 11.25f);
+        item = new Item("boxofimportedchocolates", "Box of imported chocolates", true, false, 11.25f);
         itemRepository.saveAndFlush(item);
         LOG.info(item);
 

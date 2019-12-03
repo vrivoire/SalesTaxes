@@ -1,4 +1,4 @@
-package com.vrivoire.salestaxes.repositories;
+package com.vrivoire.salestaxes.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
